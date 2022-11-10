@@ -84,13 +84,16 @@ Accepted=true
 Cookies=@Invalid()
 
 [Preferences]
-Connection\PortRangeMin=45000
+Connection\PortRangeMin=38246
 Downloads\DiskWriteCacheSize=$Cache2
 Downloads\SavePath=/home/$username/qbittorrent/Downloads/
 Queueing\QueueingEnabled=false
 WebUI\Password_ha1=@ByteArray($md5password)
-WebUI\Port=8080
+WebUI\Port=24396
 WebUI\Username=$username
+WebUI\CSRFProtection=false
+Downloads\PreAllocation=false
+Session\ValidateHTTPSTrackerCertificate=false
 EOF
     elif [[ "${version}" =~ "4.2."|"4.3."|"4.4." ]]; then
         wget  https://raw.githubusercontent.com/jerry048/Seedbox-Components/main/Torrent%20Clients/qBittorrent/qb_password_gen && chmod +x $HOME/qb_password_gen
@@ -103,13 +106,16 @@ Accepted=true
 Cookies=@Invalid()
 
 [Preferences]
-Connection\PortRangeMin=45000
+Connection\PortRangeMin=38246
 Downloads\DiskWriteCacheSize=$Cache2
 Downloads\SavePath=/home/$username/qbittorrent/Downloads/
 Queueing\QueueingEnabled=false
 WebUI\Password_PBKDF2="@ByteArray($PBKDF2password)"
-WebUI\Port=8080
+WebUI\Port=24396
 WebUI\Username=$username
+WebUI\CSRFProtection=false
+Downloads\PreAllocation=false
+Session\ValidateHTTPSTrackerCertificate=false
 EOF
     rm qb_password_gen
     fi
