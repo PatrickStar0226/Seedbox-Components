@@ -99,8 +99,15 @@ Downloads\PreAllocation=false
 Session\ValidateHTTPSTrackerCertificate=false
 EOF
     elif [[ "${version}" =~ "4.2."|"4.3."|"4.4." ]]; then
-        wget  https://raw.githubusercontent.com/PatrickStar0226/Seedbox-Components/main/Torrent%20Clients/qBittorrent/qb_password_gen && chmod +x $HOME/qb_password_gen
-        PBKDF2password=$($HOME/qb_password_gen $password)
+        if [ "$(uname -m)" = "armv7l" ] || [ "$(uname -m)" = "aarch64" ]; then
+            wget  https://raw.githubusercontent.com/PatrickStar0226/Seedbox-Components/main/Torrent%20Clients/qBittorrent/qb_password_gen_static_aarch64 && chmod +x $HOME/qb_password_gen_static_aarch64
+            PBKDF2password=$($HOME/qb_password_gen_static_aarch64 $password)
+            rm qb_password_gen_static_aarch64
+        else
+            wget  https://raw.githubusercontent.com/PatrickStar0226/Seedbox-Components/main/Torrent%20Clients/qBittorrent/qb_password_gen && chmod +x $HOME/qb_password_gen
+            PBKDF2password=$($HOME/qb_password_gen $password)
+            rm qb_password_gen
+        fi
         cat << EOF >/home/$username/.config/qBittorrent/qBittorrent.conf
 [LegalNotice]
 Accepted=true
@@ -120,7 +127,6 @@ WebUI\CSRFProtection=false
 Downloads\PreAllocation=false
 Session\ValidateHTTPSTrackerCertificate=false
 EOF
-    rm qb_password_gen
     fi
     systemctl start qbittorrent-nox@$username
 }
