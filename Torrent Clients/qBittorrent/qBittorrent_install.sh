@@ -112,7 +112,7 @@ EOF
 [LegalNotice]
 Accepted=true
 
-[Network]+
+[Network]
 Cookies=@Invalid()
 
 [Preferences]
