@@ -7,3 +7,4 @@ The script used to compile the build is [userdocs' qbittorrent-nox-static script
 
 Could be used in both Dedicated Seedbox & Shared Seedbox
 
+the qBittorrent 4.3.8 - libtorrent-v1.2.14 - aarch64 from https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.3.8_v1.2.14/aarch64-qbittorrent-nox
